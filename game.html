@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lost in the Caves</title>
+    </head>
+    <body>
+        <script>
+            function $(x){
+    switch (x[0]){
+        case "#":
+            var k=x.substr(1);
+            return document.getElementById(k);
+        default:
+           return document.getElementsByTagName(x);
+    }
+}
+
+//light for phone
+function go(event){
+    var posX=event.touches[0].clientX;
+    var posY=event.touches[0].clientY;
+        $("#light").style.background=`radial-gradient(circle at ${posX}px ${posY}px ,rgba(222, 222, 140, 0.25) , transparent 7%,  transparent 15% , rgba(0 , 0 , 0 , 0.96) 24%)`;
+    
+}
+
+//Light for pc
+function goPC(event){
+    var posX=event.clientX;
+    var posY=event.clientY;
+        $("#light").style.background=`radial-gradient(circle at ${posX}px ${posY}px , rgba(255, 255, 140, 0.25) , transparent 7%,  transparent 15% ,  rgba(0 , 0 , 0 , 0.96) 24%)`;
+    
+}
+window.onload=function(){
+    $("#light").addEventListener("mousemove",function(){
+        goPC(event);
+    });
+    $("#light").addEventListener("touchmove",function(){
+        go(event);
+    });
+};
+        </script>
+        <style>
+#light{
+    position:absolute;
+    width:100%; height:100%;
+    left:0; top:0;
+    background-color:black;
+}
+
+#room{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:url("https://imgur.com/GnCYq50.jpg");
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+    cursor:crosshair;
+}
+
+        </style>
+         <div id="room">
+            <div id="light">
+            </div>
+            </div>
+    </body>
+</html>
